@@ -1,0 +1,48 @@
+import React from "react";
+import { useState } from "react";
+import  "./index.css";
+function App() {
+  const [email, setEmail]=useState("");
+  const[message, setMessage]= useState("");
+  const emailValidation= (e) => {
+    e.preventDefault()
+   const regEx = /^[a-zA-Z0-9._]+@[a-z]+\.[a-z]{2-6}$/ 
+   if(regEx.test(email)){
+    setMessage("Email is valid")
+    } else if(!regEx.test(email) ){
+        setMessage("email is not valid")
+    } else if(email ===""){
+        setMessage("enter an email")
+    }
+  };
+
+  const handleOnChange =(e) => {
+    setEmail(e.target.value);
+  };
+  
+  return(
+  <div className="app">
+    <div className="header">
+      <h2>email validation</h2>
+
+    </div>
+    <div className="card">
+      <label htmlFor="email"className="label">
+        Email:
+      </label>
+      <input
+      id="email"
+      className="input"
+      type="email"
+      placeholder="email"
+      value={email}
+      onChange={handleOnChange}
+      />
+      <p className="message">{message}</p>
+      <button onClick={emailValidation}>check</button>
+         
+    </div>
+    </div>
+  );
+}
+export default App 
